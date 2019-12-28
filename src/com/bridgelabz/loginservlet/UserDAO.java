@@ -16,7 +16,7 @@ public class UserDAO
 	{
 		try 
 		{
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/Login","root","1234Rp");
 		} 
 		catch (SQLException | ClassNotFoundException e) 
@@ -49,9 +49,31 @@ public class UserDAO
 			e.printStackTrace();
 		}
 		return resultset;
-
-		
 	}
 	
+	public static int insert(UservVo user)
+	{
+		connection=UserDAO.getConnection();
+		int result=0;
+		try{
+			preparestatement=connection.prepareStatement("insert into Register values(?,?,?,?,?,?,?,?,?,?)");
+			preparestatement.setString(1,user.getFirstName());
+			preparestatement.setString(2,user.getLastName());
+			preparestatement.setString(3, user.getUserName());
+			preparestatement.setString(4, user.getAddress());
+			preparestatement.setString(5, user.getCity());
+			preparestatement.setString(6, user.getState());
+			preparestatement.setString(7, user.getPincode());
+			preparestatement.setString(8, user.getPassword());
+			preparestatement.setString(9, user.getGender());
+			preparestatement.setString(10, user.getContact());
+			 result=preparestatement.executeUpdate();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 }
