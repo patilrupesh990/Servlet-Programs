@@ -27,6 +27,16 @@
 		</servlet-mapping>
 		
 		<servlet>
+			<servlet-name>Register</servlet-name>
+			<servlet-class>com.bridgelabz.loginservlet.RegisterServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>Register</servlet-name>
+			<url-pattern>/register</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
 			<servlet-name>Output</servlet-name>
 			<servlet-class>com.bridgelabz.loginservlet.OutputPage</servlet-class>
 		</servlet>
