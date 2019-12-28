@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+	
+		<welcome-file-list>
+			<welcome-file>Home.html</welcome-file>
+		</welcome-file-list>
+		
+		<servlet>
+			<servlet-name>Home</servlet-name>
+			<servlet-class>com.bridgelabz.loginservlet.UserFormService</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>Home</servlet-name>
+			<url-pattern>/home</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>Login</servlet-name>
+			<servlet-class>com.bridgelabz.loginservlet.LoginServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>Login</servlet-name>
+			<url-pattern>/login</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+			<servlet-name>Output</servlet-name>
+			<servlet-class>com.bridgelabz.loginservlet.OutputPage</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>Output</servlet-name>
+			<url-pattern>/output</url-pattern>
+		</servlet-mapping>
+		
+		
+</web-app>
