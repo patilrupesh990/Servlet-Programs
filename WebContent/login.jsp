@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+		<center>
+		<form action="login" method="get">
+			UserName : <input type="text" name="uname"><br>
+			Password : <input type="password" name="pwd"><br>
+			<input type="submit" value="Login">
+			<input type="submit" value="Signup">
+			<a href="register.jsp">Forgott Password ??</a>
+		</form>
+		</center>
+		
 </body>
 </html>
