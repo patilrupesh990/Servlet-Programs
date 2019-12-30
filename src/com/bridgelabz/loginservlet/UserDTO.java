@@ -1,6 +1,6 @@
 package com.bridgelabz.loginservlet;
 
-public class UservVo 
+public class UserDTO 
 {
 	private String firstName;
 	private String lastName;
@@ -8,11 +8,18 @@ public class UservVo
 	private String address;
 	private String city;
 	private String state;
-	private int pincode;
+	private String pincode;
 	private String Password;
 	private String gender;
 	private String contact;
+	private String email;
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -49,10 +56,10 @@ public class UservVo
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getPincode() {
+	public String getPincode() {
 		return pincode;
 	}
-	public void setPincode(int pincode) {
+	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
 	public String getPassword() {
