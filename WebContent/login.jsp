@@ -9,11 +9,19 @@
 <body>
 		<center>
 		<form action="login" method="get">
-			UserName : <input type="text" name="uname"><br>
-			Password : <input type="password" name="pwd"><br>
-			<input type="submit" value="Login">
-			<input type="submit" value="Signup">
-			<a href="register.jsp">Forgott Password ??</a>
+			<br><br><br><br>
+			<table>
+			<tr><td>UserName :</td><td> <input type="text" name="uname"></td></tr>
+			<tr><td>Password :</td><td> <input type="password" name="pwd"></td></tr>
+			</table>
+			<br><br>
+			<input type="submit" value="Login" align="middle"><br>
+			
+			<a href="register.jsp">New User??</a><br>
+			<a href="forgot.jsp">Forgot Your Password ??</a>
+			<br>
+			<span style="color: red;">${message}</span>
+			
 		</form>
 		</center>
 		
