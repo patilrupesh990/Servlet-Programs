@@ -28,12 +28,13 @@ public class RegistrationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		writer=response.getWriter();
 		
-		String error_fname="",error_address = "",error_city="",error_state="",error_pincode="",error_uname="",error_pwd="",error_contact="";
+		String error_fname="",error_address = "",error_city="",error_email="",error_state="",error_pincode="",error_uname="",error_pwd="",error_contact="";
 		
 		String firstName=request.getParameter("fname");
 		String lastname=request.getParameter("lname");
 		String address=request.getParameter("address");
 		String city=request.getParameter("city");
+		String email=request.getParameter("email");
 		String state=request.getParameter("state");
 		System.out.println(state);
 		String pincode=request.getParameter("pincode");
@@ -47,6 +48,11 @@ public class RegistrationFilter implements Filter {
 		if(firstName.equals(null)||firstName.equals(""))
 		{
 			error_fname="Student Name is required";
+			flag=false;
+		}
+		if(email.equals(null)||email.equals(""))
+		{
+			error_email="Email is Required";
 			flag=false;
 		}
 		if(address.equals(null)||address.equals(""))
@@ -85,6 +91,11 @@ public class RegistrationFilter implements Filter {
 			error_contact="you must entered Contact Number";
 			flag=false;
 		}
+		if(contact.length()<10)
+		{
+			error_contact="Mobile Number Must be 10 digits";
+			flag=false;
+		}
 		if(flag==true)
 			chain.doFilter(request, response);
 		else
@@ -100,6 +111,11 @@ public class RegistrationFilter implements Filter {
 			writer.println("<tr bgcolor='#566573'>");
 			writer.println("<td>Last Name</td><td><input type='text' name='lname' value='"+lastname+"'></td></tr>");
 		
+			writer.println("<tr bgcolor='#2C3E50'>");
+			writer.println("<td>Email</td><td><input type='text' name='email' value='"+address+"'></td>");
+			writer.println("<td><font color='red' size='2'><b>*"+error_email+"</b></td></tr>");
+		
+			
 			writer.println("<tr bgcolor='#2C3E50'>");
 			writer.println("<td>Address</td><td><input type='text' name='address' value='"+address+"'></td>");
 			writer.println("<td><font color='red' size='2'><b>*"+error_address+"</b></td></tr>");
@@ -121,9 +137,13 @@ public class RegistrationFilter implements Filter {
 			writer.println("<td><font color='red' size='2'><b>*"+error_uname+"</b></td></tr>");
 			
 			writer.println("<tr bgcolor='#1C2833'>");
-			writer.println("<td>User Name</td><td><input type='text' name='password' value='"+password+"'></td>");
+			writer.println("<td>Password</td><td><input type='text' name='pwd' value='"+password+"'></td>");
 			writer.println("<td><font color='red' size='2'><b>*"+error_pwd+"</b></td></tr>");
-						
+			
+			writer.println("<tr bgcolor='#1C2833'>");
+			writer.println("<td>Re-Enter-Password</td><td><input type='text' name='password' value=''></td>");
+			writer.println("<td><font color='red' size='2'><b>*"+error_pwd+"</b></td></tr>");
+			
 			writer.println("<tr bgcolor='#17202A'>");
 			writer.println("<td>Gender</td><td><input type='radio' name='gender' value='Male'>Male<input type='radio' name='gender' value='Female'>Female</td>");
 			
