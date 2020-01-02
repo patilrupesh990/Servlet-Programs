@@ -8,16 +8,37 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+/**********************************************************************************************************************************************************
+ * @author Rupeshp007
+ * date:28/12/2019
+ * @version 1.0
+ * Purpose:its a servlet to Register User into the application it will take user Inputs from user 
+ * 
+ * 		-username
+ * 		-password
+ * 		-firstName
+ * 		-lastNAme
+ * 		-address
+ * 		-city
+ * 		-state
+ * 		-email
+ * 		-pincode
+ * 		-gender
+ * 		-contact No.
+ * 
+ * before executing this Class first will execute Registration Filter to Validate Form.
+ * 
+ ***********************************************************************************************************************************************************/
 
 
 @SuppressWarnings("serial")
 public class RegisterServlet extends HttpServlet 
 {
 	PrintWriter writer;
-	RequestDispatcher dispatcher;
+	RequestDispatcher dispatcher=null;
 		public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException
 		{
-			UservVo user=new UservVo();
+			UserDTO user=new UserDTO();
 			response.setContentType("text/html");
 			writer=response.getWriter();
 			user.setFirstName(request.getParameter("fname"));
@@ -25,27 +46,45 @@ public class RegisterServlet extends HttpServlet
 			user.setAddress(request.getParameter("address"));
 			user.setCity(request.getParameter("city"));
 			user.setState(request.getParameter("state"));
+			user.setEmail(request.getParameter("email"));
 			user.setPincode(request.getParameter("pincode"));
 			user.setUserName(request.getParameter("uname"));
 			user.setPassword(request.getParameter("pwd"));
 			user.setGender(request.getParameter("gender"));
 			user.setContact(request.getParameter("contact"));
 			
-			int result=UserDAO.insert(user);
+		if(UserDAO.checkEntry(user))
+		{
+					int result=UserDAO.insert(user);
+					System.out.println();
+					if(result>0)
+					{
+						writer.print("You have Registered SuccessFully");
+						dispatcher=request.getRequestDispatcher("login.jsp");
+						dispatcher.include(request, response);
+		
+					}
+					else
+					{
+						writer.println("<h3>You could not Registered yet try Again</h3>");
+						dispatcher=request.getRequestDispatcher("register.jsp");
+						dispatcher.include(request, response);
+		
+					}
+		}else
+		{
 			
-			if(result>0)
-			{
-				writer.println("You have Registered SuccessFully");
-				dispatcher=request.getRequestDispatcher("register.jsp");
-				dispatcher.include(request, response);
-
-			}
-			else
-			{
-				writer.println("You could not Registered yet try Again");
-				dispatcher=request.getRequestDispatcher("register.jsp");
-				dispatcher.include(request, response);
-
-			}
+			writer.println("<h3>User is Alrady Registered</h3>");
+			dispatcher=request.getRequestDispatcher("register.jsp");
+			dispatcher.include(request, response);
+		}
+			
+			
+		}
+		/**To destroy All connection resorses*/
+		@Override
+		public void destroy()
+		{
+			UserDAO.closeConnection();
 		}
 }
