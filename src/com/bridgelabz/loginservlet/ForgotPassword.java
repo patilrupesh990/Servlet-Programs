@@ -9,6 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+/***********************************************************************************************************
+ * @author Rupeshp007
+ * date:28/12/2019
+ * @version 1.0
+ * Purpose: Its Servlet to Logout by user and It will invalidate session object and remove attribute and will be redirect to the 
+ * 			Login page
+ * 
+ * 
+ * 
+ ***********************************************************************************************************************************************************/
 
 @SuppressWarnings("serial")
 @WebServlet("/forgot")
