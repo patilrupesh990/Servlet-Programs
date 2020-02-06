@@ -1,13 +1,15 @@
-package com.bridgelabz.loginservlet;
+package com.bridgelabz.usermanagemant.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.bridgelabz.usermanagemant.dto.UserDTO;
 /***********************************************************************************************************
  * @author Rupeshp007
- * date:29/12/2019
+ * date:02/01/2020
  * @version 1.0
  * Purpose: Its and DAO layer class of Servlet login it contains database connection object and database operations related methods
  * 			
@@ -67,10 +69,9 @@ public class UserDAO
 
 	public static ResultSet Authentication(String username,String password)
 	{
-
 		connection=UserDAO.getConnection();
-
-		try {
+		try
+		{
 			preparestatement=connection.prepareStatement("select * from Register where UserName=? and password=?");
 			preparestatement.setString(1, username);
 			preparestatement.setString(2, password);

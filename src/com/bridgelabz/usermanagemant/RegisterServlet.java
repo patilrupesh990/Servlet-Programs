@@ -1,4 +1,4 @@
-package com.bridgelabz.loginservlet;
+package com.bridgelabz.usermanagemant;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bridgelabz.usermanagemant.dao.UserDAO;
+import com.bridgelabz.usermanagemant.dto.UserDTO;
 /**********************************************************************************************************************************************************
  * @author Rupeshp007
  * date:28/12/2019
@@ -34,8 +37,13 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("serial")
 public class RegisterServlet extends HttpServlet 
 {
+	//initialization 
+	
 	PrintWriter writer;
 	RequestDispatcher dispatcher=null;
+	
+	//HttpServlet Class HttpServlet Class to Send Data to Browser and Data Base 
+	
 		public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException
 		{
 			UserDTO user=new UserDTO();
@@ -53,8 +61,7 @@ public class RegisterServlet extends HttpServlet
 			user.setGender(request.getParameter("gender"));
 			user.setContact(request.getParameter("contact"));
 			
-		if(UserDAO.checkEntry(user))
-		{
+		
 					int result=UserDAO.insert(user);
 					System.out.println();
 					if(result>0)
@@ -71,13 +78,7 @@ public class RegisterServlet extends HttpServlet
 						dispatcher.include(request, response);
 		
 					}
-		}else
-		{
-			
-			writer.println("<h3>User is Alrady Registered</h3>");
-			dispatcher=request.getRequestDispatcher("register.jsp");
-			dispatcher.include(request, response);
-		}
+		
 			
 			
 		}

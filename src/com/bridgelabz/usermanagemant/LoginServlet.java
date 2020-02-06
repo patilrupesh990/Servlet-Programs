@@ -1,4 +1,4 @@
-package com.bridgelabz.loginservlet;
+package com.bridgelabz.usermanagemant;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.bridgelabz.usermanagemant.dao.UserDAO;
 /***********************************************************************************************************
  * @author Rupeshp007
  * date:28/12/2019
@@ -40,8 +42,6 @@ public class LoginServlet extends HttpServlet
 		String password=request.getParameter("pwd");
 		resultSet=UserDAO.Authentication(userName, password);
 		
-		
-		
 		try {
 			
 					if(resultSet.next())
@@ -51,13 +51,13 @@ public class LoginServlet extends HttpServlet
 						session.setAttribute("city",resultSet.getString(5));
 						session.setAttribute("state",resultSet.getString(6));
 						session.setAttribute("Contact",resultSet.getString(10));
-						RequestDispatcher dispatcher=request.getRequestDispatcher("output.jsp");
-						dispatcher.forward(request, response);
+						response.sendRedirect("output.jsp");
 					}
 					else
 					{
 						writer.println("Invalid UserName and Password");
-			            response.sendRedirect("login.jsp");
+						RequestDispatcher dispatcher=request.getRequestDispatcher("login.jsp");
+						dispatcher.include(request, response);
 
 					}
 			

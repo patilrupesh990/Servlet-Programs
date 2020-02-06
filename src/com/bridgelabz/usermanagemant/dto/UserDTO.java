@@ -1,6 +1,8 @@
-package com.bridgelabz.loginservlet;
+package com.bridgelabz.usermanagemant.dto;
 
-public class UserDTO 
+import java.io.Serializable;
+
+public class UserDTO implements Serializable
 {
 	private String firstName;
 	private String lastName;

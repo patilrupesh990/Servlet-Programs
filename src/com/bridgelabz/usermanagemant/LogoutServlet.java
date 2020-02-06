@@ -1,4 +1,4 @@
-package com.bridgelabz.loginservlet;
+package com.bridgelabz.usermanagemant;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.omg.DynamicAny.DynAnyOperations;
+
+import com.bridgelabz.usermanagemant.dao.UserDAO;
 @SuppressWarnings("serial")
 
 /*************************************************************************************************************************
@@ -24,8 +26,7 @@ import org.omg.DynamicAny.DynAnyOperations;
  * url-pattern="logout"
  * 
  *******************************************************************************/
-@WebServlet("/logout")
-public class Logout extends HttpServlet
+public class LogoutServlet extends HttpServlet
 {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,4 +1,4 @@
-package com.bridgelabz.loginservlet;
+package com.bridgelabz.usermanagemant;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.bridgelabz.usermanagemant.dao.UserDAO;
+import com.bridgelabz.usermanagemant.dto.UserDTO;
 /***********************************************************************************************************
  * @author Rupeshp007
  * date:28/12/2019
@@ -22,7 +25,7 @@ import javax.servlet.http.HttpSession;
 
 @SuppressWarnings("serial")
 @WebServlet("/forgot")
-public class ForgotPassword extends HttpServlet
+public class ForgotPasswordServlet extends HttpServlet
 {
 	PrintWriter writer;
 	HttpSession session;
